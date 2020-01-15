@@ -146,7 +146,7 @@ def run(pathDataset,testPath,pathtest,pathModels):
     dfResults = pd.DataFrame([r], columns=col)
     results = results.append(dfResults, ignore_index=True)
     print(results)
-    results.to_csv(testPath + '_results.csv', index=False)
+    results.to_csv(testPath + '_ablation_results.csv', index=False)
 
 def runCICIDS(pathDataset,testPath,pathtest,pathModels):
     # create pandas for results
@@ -317,7 +317,7 @@ def runCICIDS(pathDataset,testPath,pathtest,pathModels):
     print(results)
 
 
-    results.to_csv(testPath + '_results.csv', index=False)
+    results.to_csv(testPath + '_ablation_results.csv', index=False)
 
 
 def main():
