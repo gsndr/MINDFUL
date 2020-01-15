@@ -291,36 +291,25 @@ class Datasets():
 
 
     def getOnlyCNN_F(self, train, N_CLASSES):
-        """setting model and parameter for each dataset
 
-                   Extended description of function.
-
-                   Args: train set normalized
-                       (int) numbers of classes
-
-
-                   Returns: model and parameters
-
-                   """
         m = Models(N_CLASSES)
         if ((self._testpath == 'KDDCUP') or (self._testpath == 'KDDTest-21')):
             p = {
                 'filter': 64,
                 'num_unit': 320,
                 'num_unit1': 160,
-                'num_unit2': 80,
                 'activation': 'tanh',
-                  'dropout_rate1': 0.15716268492531738,
+                'dropout_rate1': 0.15716268492531738,
                 'dropout_rate2': 0.5442420919810019,
                 'dropout_rate3': 0.43404126142165134,
                 'batch_size': 128,
-                'epochs': 150,  # 15 o 150?
+                'epochs': 150,
                 'optimizer': Nadam,
                 'kernel_initializer': 'glorot_uniform',
                 'losses': 'categorical_crossentropy',
                 'first_activation': 'tanh',
-                'second_activation': 'tanh',
-                'third_activation': 'tanh'}
+                'second_activation': 'tanh'
+                }
 
             model = m.Conv1D(train, p)
         elif (self._testpath == 'UNSW_NB15'):
@@ -328,38 +317,35 @@ class Datasets():
                 'filter': 64,
                 'num_unit': 320,
                 'num_unit1': 160,
-                'num_unit2': 80,
                 'activation': 'tanh',
                 'dropout_rate1': 0.3808760346037454,
                 'dropout_rate2': 0.4236166283779518,
                 'dropout_rate3': 0.18458586014066036,
                 'batch_size': 64,
-                'epochs': 150,  # 15 o 150?
+                'epochs': 150,
                 'optimizer': Nadam,
                 'kernel_initializer': 'glorot_uniform',
                 'losses': 'categorical_crossentropy',
                 'first_activation': 'tanh',
-                'second_activation': 'tanh',
-                'third_activation': 'tanh'}
+                'second_activation': 'tanh'
+                }
             model = m.Conv1D(train, p)
         elif ((self._testpath == 'CICIDS2017') or (self._testpath == 'CICIDS2017_2')):
             p = {
                 'filter': 64,
                 'num_unit': 320,
                 'num_unit1': 160,
-                'num_unit2': 80,
                 'activation': 'tanh',
                 'dropout_rate1': 0.25634389232531474,
                 'dropout_rate2': 0.12064860770171626,
                 'dropout_rate3': 0.1602501347478713,
                 'batch_size': 64,
-                'epochs': 150,  # 15 o 150?
+                'epochs': 15,
                 'optimizer': Nadam,
                 'kernel_initializer': 'glorot_uniform',
                 'losses': 'categorical_crossentropy',
                 'first_activation': 'tanh',
-                'second_activation': 'tanh',
-                'third_activation': 'tanh'}
+                'second_activation': 'tanh'}
             model = m.Conv1D(train, p)
         return model, p
 
