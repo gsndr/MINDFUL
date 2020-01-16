@@ -157,7 +157,7 @@ class RunCNN1DCICIDS():
             print("Load autoencoder Normal from disk")
             autoencoderN = load_model(pathModels + 'autoencoderNormal.h5')
             autoencoderN.summary()
-            plot_model(autoencoderN, to_file='model.png')
+
 
         train_RE = autoencoderN.predict(train_X)
         # test
