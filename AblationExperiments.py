@@ -23,24 +23,6 @@ np.set_printoptions(suppress=True)
 import sys
 
 
-def getXY(target, tests):
-    test_Y = list()
-    test_X = list()
-    for test in tests:
-        t_Y = test[target]
-        t_X = test.drop(target, axis=1)
-        t_X = t_X.values
-        test_Y.append(t_Y)
-        test_X.append(t_X)
-
-    return test_X, test_Y
-
-
-
-def scaleSimple(Y_test):
-
-        Y_test = scale(Y_test)
-        return Y_test
 
 def getResult(cm, N_CLASSES):
     tp = cm[0][0]  # attacks true
