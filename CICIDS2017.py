@@ -140,7 +140,7 @@ class RunCNN1DCICIDS():
         if (int(configuration.get('LOAD_AUTOENCODER_NORMAL')) == 0):
 
 
-            autoencoderN, p = ds.getAutoencoder1(train_XN, N_CLASSES)
+            autoencoderN, p = ds.getAutoencoder_Normal(train_XN, N_CLASSES)
 
             encoderN = Model(inputs=autoencoderN.input, outputs=autoencoderN.get_layer('encoder3').output)
             encoderN.summary()
@@ -172,7 +172,7 @@ class RunCNN1DCICIDS():
         if (int(configuration.get('LOAD_AUTOENCODER_ADV')) == 0):
 
 
-            autoencoderA, p = ds.getAutoencoder1_Attacks(+train_XA, N_CLASSES)
+            autoencoderA, p = ds.getAutoencoder_Attacks(+train_XA, N_CLASSES)
 
             encoderA = Model(inputs=autoencoderA.input, outputs=autoencoderA.get_layer('encoder3').output)
             encoderA.summary()
@@ -198,9 +198,7 @@ class RunCNN1DCICIDS():
             testR = testXA
             test_REA.append(testR)
 
-        train_X, test_X = prp.scaleSimpleCICIDS(train_X, test_X)
-        train_RE, test_RE = prp.scaleSimpleCICIDS(train_RE, test_RE)
-        train_REA, test_REA = prp.scaleSimpleCICIDS(train_REA, test_REA)
+
 
         train_X_image, input_Shape = self.createImage(train_X, train_RE, train_REA)  # XS UNSW
         test_X_image = list()
@@ -218,7 +216,7 @@ class RunCNN1DCICIDS():
                                         restore_best_weights=True),
             ]
 
-            model, p = ds.getOnlyCNN_F(input_shape, N_CLASSES)
+            model, p = ds.getMINDFUL(input_shape, N_CLASSES)
 
 
 

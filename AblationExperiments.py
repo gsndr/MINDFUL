@@ -69,6 +69,7 @@ def run(pathDataset,testPath,pathtest,pathModels):
     test_X_concatenate = np.load(pathDataset + 'DS/X_test_conc.npy')
     ann = load_model(pathModels + 'ANN.h5')
     print('Prediction ANN')
+    ann.summary()
     predictions = ann.predict(test_X_concatenate)
     y_pred = np.argmax(predictions, axis=1)
     cmA = confusion_matrix(test_Y, y_pred)

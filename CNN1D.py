@@ -149,10 +149,8 @@ class RunCNN1D():
         if (int(configuration.get('LOAD_AUTOENCODER_NORMAL')) == 0):
 
 
-            autoencoderN, p = ds.getAutoencoder1(train_XN, N_CLASSES)
-
-            encoderN = Model(inputs=autoencoderN.input, outputs=autoencoderN.get_layer('encoder3').output)
-            encoderN.summary()
+            autoencoderN, p = ds.getAutoencoder_Normal(train_XN, N_CLASSES)
+            autoencoderN.summary()
 
             history = autoencoderN.fit(train_XN, train_XN,
                                        validation_split=VALIDATION_SPLIT,
@@ -176,10 +174,10 @@ class RunCNN1D():
         if (int(configuration.get('LOAD_AUTOENCODER_ADV')) == 0):
 
 
-            autoencoderA, p = ds.getAutoencoder1_Attacks(+train_XA, N_CLASSES)
+            autoencoderA, p = ds.getAutoencoder_Attacks(+train_XA, N_CLASSES)
 
-            encoderA = Model(inputs=autoencoderA.input, outputs=autoencoderA.get_layer('encoder3').output)
-            encoderA.summary()
+
+            autoencoderA.summary()
 
             history = autoencoderA.fit(train_XA, train_XA,
                                        validation_split=VALIDATION_SPLIT,
@@ -197,9 +195,7 @@ class RunCNN1D():
         train_REA = autoencoderA.predict(train_X)
         test_REA = autoencoderA.predict(test_X)
 
-        train_X, test_X = prp.scaleSimple(train_X, test_X)
-        train_RE, test_RE = prp.scaleSimple(train_RE, test_RE)
-        train_REA, test_REA = prp.scaleSimple(train_REA, test_REA)
+
 
         train_X_image, input_Shape = self.createImage(train_X, train_RE, train_REA)  # XS UNSW
         test_X_image, input_shape = self.createImage(test_X, test_RE, test_REA)
@@ -212,7 +208,7 @@ class RunCNN1D():
                                         restore_best_weights=True),
             ]
 
-            model, p = ds.getOnlyCNN_F(input_shape, N_CLASSES)
+            model, p = ds.getMINDFUL(input_shape, N_CLASSES)
 
 
 

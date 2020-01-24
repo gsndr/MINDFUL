@@ -209,7 +209,7 @@ def main():
 
     col = ['Model', 'TP', 'FN', 'FP', 'TN', 'OA', 'AA', 'P', 'R', 'F1', 'FAR(FPR)', 'TPR']
     results = pd.DataFrame()
-    imbalanced = [100, 75, 50, 25, 5]
+    imbalanced = [100,75, 50, 25, 5]
     for n in imbalanced:
         r = run(n, pathDataset, pathModels)
         results = results.append(r, ignore_index=True)

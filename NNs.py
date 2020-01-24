@@ -17,12 +17,9 @@ class Models():
     def __init__(self, n_classes):
         self._nClass = n_classes
 
-
-
-    def deepAutoEncoderUNSW(self, x_train, params):
+    def autoencoder(self, x_train, params):
         n_col = x_train.shape[1]
         input = Input(shape=(n_col,))
-
         encoded = Dense(params['first_layer'], activation=params['first_activation'],
                         kernel_initializer=params['kernel_initializer'],
                         name='encoder2')(input)
@@ -33,45 +30,44 @@ class Models():
                         name='encoder3')(encoded)
 
 
-        decoded = Dense(params['third_layer'], activation=params['third_activation'], kernel_initializer=params['kernel_initializer'],
+        decoded = Dense(params['first_layer'], activation=params['first_activation'],
+                        kernel_initializer=params['kernel_initializer'],
                         name='decoder2')(encoded)
-        decoded = Dense(n_col, activation=params['third_activation'], kernel_initializer=params['kernel_initializer'],
+        decoded = Dense(n_col, activation=params['last_activation'], kernel_initializer=params['kernel_initializer'],
                         name='decoder1')(decoded)
-
 
         autoencoder = Model(input=input, output=decoded)
         autoencoder.summary
-
-
+        learning_rate = 0.001
+        decay = learning_rate / params['epochs']
         autoencoder.compile(loss=params['losses'],
-                            optimizer=params['optimizer']()
+                            optimizer=params['optimizer'](lr=params['lr'])
                             # (lr=0.001, beta_1=0.9, beta_2=0.999, epsilon=10e-8, amsgrad=False)#
                             , metrics=['acc'])
 
         return autoencoder
 
-
-    def Conv1D(self, input_shape, params):
+    def MINDFUL(self, input_shape, params):
         input2 = Input(input_shape)
 
-        l1 = Conv1D(params['filter'], kernel_size=1, activation=params['activation'], name='conv0', kernel_initializer=params['kernel_initializer'])(input2)
+        l1 = Conv1D(params['filter'], kernel_size=1, activation=params['activation'], name='conv0',
+                    kernel_initializer=params['kernel_initializer'])(input2)
         l1 = Dropout(params['dropout_rate1'])(l1)
-
         l1 = Flatten()(l1)
 
-        l1 = Dense(params['num_unit'], activation=params['first_activation'], kernel_initializer=params['kernel_initializer'])(
+        l1 = Dense(params['num_unit'], activation=params['activation'],
+                   kernel_initializer=params['kernel_initializer'])(
             l1)
-
         l1 = Dropout(params['dropout_rate2'])(l1)
-        l1 = Dense(params['num_unit1'] , activation=params['second_activation'], kernel_initializer=params['kernel_initializer'])(l1)
+        l1 = Dense(params['num_unit1'], activation=params['activation'],
+                   kernel_initializer=params['kernel_initializer'])(l1)
         l1 = Dropout(params['dropout_rate3'])(l1)
-
         softmax = Dense(self._nClass, activation='softmax', kernel_initializer=params['kernel_initializer'])(l1)
 
         model = Model(inputs=input2, outputs=softmax)
         model.summary()
         model.compile(loss=params['losses'],
-                      optimizer=params['optimizer'](),
+                      optimizer=params['optimizer'](learning_rate=params['lr']),
                       metrics=['acc'])
         return model
 

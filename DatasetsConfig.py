@@ -129,70 +129,58 @@ class Datasets():
 
 
 
-    def getAutoencoder1(self, train_XN, N_CLASSES):
+    def getAutoencoder_Normal(self, train_XN, N_CLASSES):
 
         m = Models(N_CLASSES)
         if ((self._testpath == 'KDDCUP') or (self._testpath == 'KDDTest-21')):
 
-
             p = {
-                'first_layer': 30,
-                'second_layer': 20,
-                'third_layer': 10,
-                'batch_size': 64,
+                'first_layer': 40,
+                'second_layer': 10,
+                'batch_size': 512,
                 'epochs': 150,
-                'optimizer': Adadelta,
+                'optimizer': Adam,
+                'dropout_rate': 0.0032498967209000917,
                 'kernel_initializer': 'glorot_uniform',
                 'losses': 'mse',
-                'dropout_rate': 0,
+                'lr': 0.008,
                 'first_activation': 'relu',
-                'second_activation': 'relu',
-                'third_activation': 'relu',
-                'dropout': 0.11245974166556161
+                'last_activation': 'linear'}
 
-            }
-            model = m.deepAutoEncoderUNSW(train_XN, p)
+            model = m.autoencoder(train_XN, p)
         elif (self._testpath == 'UNSW_NB15'):
             p = {
-                'first_layer': 30,
-                'second_layer': 20,
-                'third_layer': 10,
-                'four_layer': 10,
-                'five_layer': 20,
-                'six_layer': 10,
-                'batch_size': 64,
+                'first_layer': 40,
+                'second_layer': 10,
+                'batch_size': 128,
                 'epochs': 150,
-                'optimizer': Adadelta,
-                'dropout_rate': 0,
+                'optimizer': Adam,
+                'dropout_rate': 0.010283964911821944,
                 'kernel_initializer': 'glorot_uniform',
                 'losses': 'mse',
+                'lr': 0.009,
                 'first_activation': 'relu',
-                'second_activation': 'relu',
-                'third_activation': 'relu'}
-            model = m.deepAutoEncoderUNSW(train_XN, p)
+                'last_activation': 'linear'}
+            model = m.autoencoder(train_XN, p)
         elif ((self._testpath== 'CICIDS2017') or (self._testpath== 'CICIDS2017_2')):
             p = {
-                'first_layer': 80, #55
-                'second_layer': 80, #30
-                'third_layer': 30, #10 Gargaro
-                'four_layer': 10,
-                'five_layer': 20,
-                'six_layer': 10,
-                'batch_size': 64,
+                'first_layer': 50,
+                'second_layer': 10,
+                'batch_size': 512,
                 'epochs': 150,
-                'optimizer': Adadelta, #Adam
-                'dropout_rate': 0.5,
+                'optimizer': Adam,
+                'dropout_rate': 0.0032498967209000917,
                 'kernel_initializer': 'glorot_uniform',
                 'losses': 'mse',
-                'first_activation': 'relu', #tanh
-                'second_activation': 'relu', #tanh
-                'third_activation': 'relu'} #tanh
-            model = m.deepAutoEncoderUNSW(train_XN, p)
+                'lr': 0.008,
+                'first_activation': 'relu',
+                'last_activation': 'linear'}
+            model = m.autoencoder(train_XN, p)
         return model, p
 
 
 
-    def getAutoencoder1_Attacks(self, train_XN, N_CLASSES):
+    def getAutoencoder_Attacks(self, train_XN, N_CLASSES):
         """setting model and parameter for each dataset for autoencoder 1 attacks
 
                    Extended description of function.
@@ -209,58 +197,47 @@ class Datasets():
         if ((self._testpath == 'KDDCUP') or (self._testpath == 'KDDTest-21')):
 
             p = {
-                'first_layer': 30,
-                'second_layer': 20,
-                'third_layer': 10,
+                'first_layer': 40,
+                'second_layer': 10,
                 'batch_size': 64,
                 'epochs': 150,
-                'optimizer': Adadelta,
+                'optimizer': Adam,
+                'dropout_rate': 0.05215029409830635,
                 'kernel_initializer': 'glorot_uniform',
                 'losses': 'mse',
+                'lr': 0.002,
                 'first_activation': 'relu',
-                'second_activation': 'relu',
-                'third_activation': 'relu',
-                'dropout_rate': 0.11245974166556161
+                'last_activation': 'linear'}
 
-            }
-
-            model = m.deepAutoEncoderUNSW(train_XN, p)
+            model = m.autoencoder(train_XN, p)
         elif (self._testpath == 'UNSW_NB15'):
             p = {
-                'first_layer':30,
-                'second_layer': 20,
-                'third_layer': 10,
-                'four_layer': 10,
-                'five_layer': 20,
-                'six_layer': 10,
-                'batch_size': 64,
+                'first_layer': 40,
+                'second_layer': 10,
+                'batch_size': 512,
                 'epochs': 150,
-                'optimizer': Adadelta,
-                'dropout_rate': 0,
+                'optimizer': Adam,
+                'dropout_rate': 0.0002294380974410589,
                 'kernel_initializer': 'glorot_uniform',
                 'losses': 'mse',
+                'lr': 0.008,
                 'first_activation': 'relu',
-                'second_activation': 'relu',
-                'third_activation': 'relu'}
-            model = m.deepAutoEncoderUNSW(train_XN, p)
+                'last_activation': 'linear'}
+            model = m.autoencoder(train_XN, p)
         elif ((self._testpath== 'CICIDS2017') or (self._testpath== 'CICIDS2017_2')):
             p = {
-                'first_layer': 100,
-                'second_layer': 80, #primo
-                'third_layer': 30,
-                'four_layer': 10,
-                'five_layer': 20,
-                'six_layer': 10,
-                'batch_size': 64,
+                'first_layer': 50,
+                'second_layer': 10,
+                'batch_size': 128,
                 'epochs': 150,
-                'optimizer': Adadelta,
-                'dropout_rate': 0.5,
+                'optimizer': Adam,
+                'dropout_rate': 0.0002294380974410589,
                 'kernel_initializer': 'glorot_uniform',
                 'losses': 'mse',
+                'lr': 0.001,
                 'first_activation': 'relu',
-                'second_activation': 'relu',
-                'third_activation': 'relu'}
-            model = m.deepAutoEncoderUNSW(train_XN, p)
+                'last_activation': 'linear'}
+            model = m.autoencoder(train_XN, p)
         return model, p
 
 
@@ -290,7 +267,7 @@ class Datasets():
 
 
 
-    def getOnlyCNN_F(self, train, N_CLASSES):
+    def getMINDFUL(self, train, N_CLASSES):
 
         m = Models(N_CLASSES)
         if ((self._testpath == 'KDDCUP') or (self._testpath == 'KDDTest-21')):
@@ -298,55 +275,53 @@ class Datasets():
                 'filter': 64,
                 'num_unit': 320,
                 'num_unit1': 160,
-                'activation': 'tanh',
-                'dropout_rate1': 0.15716268492531738,
-                'dropout_rate2': 0.5442420919810019,
-                'dropout_rate3': 0.43404126142165134,
-                'batch_size': 128,
+                'activation': 'relu',
+                'dropout_rate1': 0.21509774371367885,
+                'dropout_rate2':  0.011725082462182734,
+                'dropout_rate3': 0.46207837014862785,
+                'batch_size': 256,
                 'epochs': 150,
-                'optimizer': Nadam,
+                'optimizer': Adam,
+                'lr': 0.007,
                 'kernel_initializer': 'glorot_uniform',
                 'losses': 'categorical_crossentropy',
-                'first_activation': 'tanh',
-                'second_activation': 'tanh'
-                }
+            }
 
-            model = m.Conv1D(train, p)
+            model = m.MINDFUL(train, p)
         elif (self._testpath == 'UNSW_NB15'):
             p = {
                 'filter': 64,
                 'num_unit': 320,
                 'num_unit1': 160,
-                'activation': 'tanh',
-                'dropout_rate1': 0.3808760346037454,
-                'dropout_rate2': 0.4236166283779518,
-                'dropout_rate3': 0.18458586014066036,
-                'batch_size': 64,
+                'activation': 'relu',
+                'dropout_rate1':  0.31116431424968705,
+                'dropout_rate2':  0.20670036025517124,
+                'dropout_rate3': 0.08078306361277332,
+                'batch_size': 256,
                 'epochs': 150,
-                'optimizer': Nadam,
+                'optimizer': Adam,
+                'lr': 0.0002,
                 'kernel_initializer': 'glorot_uniform',
                 'losses': 'categorical_crossentropy',
-                'first_activation': 'tanh',
-                'second_activation': 'tanh'
-                }
-            model = m.Conv1D(train, p)
+            }
+            model = m.MINDFUL(train, p)
         elif ((self._testpath == 'CICIDS2017') or (self._testpath == 'CICIDS2017_2')):
             p = {
                 'filter': 64,
                 'num_unit': 320,
                 'num_unit1': 160,
-                'activation': 'tanh',
-                'dropout_rate1': 0.25634389232531474,
-                'dropout_rate2': 0.12064860770171626,
-                'dropout_rate3': 0.1602501347478713,
+                'activation': 'relu',
+                'dropout_rate1': 0.1602501347478713,
+                'dropout_rate2': 0.11729755246044238,
+                'dropout_rate3': 0.8444244099007299,
                 'batch_size': 64,
-                'epochs': 15,
-                'optimizer': Nadam,
+                'epochs': 150,
+                'optimizer': Adam,
+                'lr': 0.0003,
                 'kernel_initializer': 'glorot_uniform',
                 'losses': 'categorical_crossentropy',
-                'first_activation': 'tanh',
-                'second_activation': 'tanh'}
-            model = m.Conv1D(train, p)
+            }
+            model = m.MINDFUL(train, p)
         return model, p
 
 

@@ -170,7 +170,7 @@ class Preprocessing():
         scaler = MinMaxScaler()
         print('Scaling')
 
-        scaler.fit(train[listContent].values)  # Remember to only fit scaler to training data
+        scaler.fit(train[listContent].values)
         train[listContent] = scaler.transform(train[listContent])
         test[listContent] = scaler.transform(test[listContent])
         return train, test
@@ -180,7 +180,7 @@ class Preprocessing():
         tests = list()
         listContent = list(listContent)
         scaler = MinMaxScaler()
-        scaler.fit(train[listContent].values)  # Remember to only fit scaler to training data
+        scaler.fit(train[listContent].values)
         train[listContent] = scaler.transform(train[listContent])
         for test in testList:
             test[listContent] = scaler.transform(test[listContent])
@@ -190,19 +190,7 @@ class Preprocessing():
 
 
 
-    def scaleSimple(self,Y_train, Y_test):
-        Y_train = scale(Y_train)
-        Y_test = scale(Y_test)
-        return Y_train, Y_test
 
-    def scaleSimpleCICIDS(self, Y_train, Y_tests):
-        scale=StandardScaler()
-        Y_train = scale.fit_transform(Y_train)
-        Y_test=list()
-        for y in Y_tests:
-            Y_t = scale.transform(y)
-            Y_test.append(Y_t)
-        return Y_train, Y_test
 
 
 
