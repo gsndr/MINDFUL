@@ -25,6 +25,8 @@ from keras.models import load_model
 from keras import backend as K
 from keras.utils import plot_model
 np.set_printoptions(suppress=True)
+from sklearn.model_selection import train_test_split
+
 
 
 def getResult(cm, N_CLASSES):
@@ -212,20 +214,21 @@ class RunCNN1DCICIDS():
 
         if (int(configuration.get('LOAD_CNN')) == 0):
             callbacks_list = [
-                callbacks.EarlyStopping(monitor='val_loss', min_delta=0.0001, patience=20,
+                callbacks.EarlyStopping(monitor='val_loss', min_delta=0.0001, patience=10,
                                         restore_best_weights=True),
             ]
 
             model, p = ds.getMINDFUL(input_shape, N_CLASSES)
+            XTraining, XValidation, YTraining, YValidation = train_test_split(train_X_image, train_Y2, stratify=train_Y2,
+                                                                              test_size=0.2)  # before model building
 
 
-
-            history3 = model.fit(train_X_image, train_Y2,
+            history3 = model.fit(XTraining, YTraining,
                                  # validation_data=(test_X, test_Y2),
-                                 validation_split=VALIDATION_SPLIT,
+                                 validation_data=(XValidation, YValidation),
                                  batch_size=p['batch_size'],
-                                 epochs=p['epochs'], shuffle=True,  # shuffle=false for NSL-KDD true for UNSW-NB15
-                                 callbacks=callbacks_list,  # class_weight=class_weight,
+                                 epochs=p['epochs'], shuffle=True,
+                                 callbacks=callbacks_list,
                                  verbose=1)
 
             Plot.printPlotAccuracy(history3, 'finalModel1', pathPlot)

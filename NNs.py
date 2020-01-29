@@ -23,13 +23,13 @@ class Models():
         encoded = Dense(params['first_layer'], activation=params['first_activation'],
                         kernel_initializer=params['kernel_initializer'],
                         name='encoder2')(input)
-        encoded = Dropout(params['dropout_rate'])(encoded)
+
         encoded = Dense(params['second_layer'], activation=params['first_activation'],
                         kernel_initializer=params['kernel_initializer'],
 
                         name='encoder3')(encoded)
 
-
+        encoded = Dropout(params['dropout_rate'])(encoded)
         decoded = Dense(params['first_layer'], activation=params['first_activation'],
                         kernel_initializer=params['kernel_initializer'],
                         name='decoder2')(encoded)
