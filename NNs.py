@@ -67,7 +67,7 @@ class Models():
         model = Model(inputs=input2, outputs=softmax)
         model.summary()
         model.compile(loss=params['losses'],
-                      optimizer=params['optimizer'](learning_rate=params['lr']),
+                      optimizer=params['optimizer'](lr=params['lr']),
                       metrics=['acc'])
         return model
 
