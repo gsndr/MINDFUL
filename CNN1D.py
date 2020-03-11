@@ -143,7 +143,7 @@ class RunCNN1D():
         results = pd.DataFrame(columns=columns)
 
         callbacks_list = [
-            callbacks.EarlyStopping(monitor='val_loss', min_delta=0.0001, patience=20, restore_best_weights=True),
+            callbacks.EarlyStopping(monitor='val_loss', min_delta=0.0001, patience=5, restore_best_weights=True),
         ]
 
         if (int(configuration.get('LOAD_AUTOENCODER_NORMAL')) == 0):

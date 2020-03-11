@@ -49,8 +49,9 @@ def run(pathDataset,testPath,pathtest,pathModels):
 
     # NN #
     nn = load_model(pathModels + 'NN.h5')
-    print('Prediction NN')
 
+    print('Prediction NN')
+    nn.summary()
     predictionsL = nn.predict(test_X)
     y_pred = np.argmax(predictionsL, axis=1)
     cmB = confusion_matrix(test_Y, y_pred)
@@ -79,6 +80,7 @@ def run(pathDataset,testPath,pathtest,pathModels):
     test_X_conACNN = test_X_concatenate.reshape(test_X_concatenate.shape[0], test_X_concatenate.shape[1], 1)
     acnn = load_model(pathModels + 'ACNN.h5')
     print('Prediction ACNN')
+    acnn.summary()
     predictions = acnn.predict(test_X_conACNN)
     y_pred = np.argmax(predictions, axis=1)
     cmACNN = confusion_matrix(test_Y, y_pred)
@@ -88,6 +90,7 @@ def run(pathDataset,testPath,pathtest,pathModels):
     test_X_image = np.load(pathDataset + 'DS/X_test_image.npy')
     mindful = load_model(pathModels + 'MINDFUL.h5')
     print('Prediction MINDFUL')
+    mindful.summary()
     predictions = mindful.predict(test_X_image)
     y_pred = np.argmax(predictions, axis=1)
     cmM = confusion_matrix(test_Y, y_pred)
@@ -151,8 +154,9 @@ def runCICIDS(pathDataset,testPath,pathtest,pathModels):
 
     # NN #
     nn = load_model(pathModels + 'NN.h5')
-    nn.summary()
+
     print(' NN prediction')
+    nn.summary()
     i = 0
     r_list=list()
     for t, Y in zip(test_X, test_Y):
@@ -185,7 +189,7 @@ def runCICIDS(pathDataset,testPath,pathtest,pathModels):
         test_X_single.append(t_single)
     cnn = load_model(pathModels + 'CNN.h5')
     print('CNN prediction')
-
+    cnn.summary()
     i = 0
     r_list = list()
     for t, Y in zip(test_X_single, test_Y):
@@ -216,6 +220,7 @@ def runCICIDS(pathDataset,testPath,pathtest,pathModels):
 
     ann = load_model(pathModels + 'ANN.h5')
     print('ANN prediction')
+    ann.summary()
     i = 0
     r_list = list()
     for t, Y in zip(test_X_concatenate, test_Y):
@@ -246,6 +251,7 @@ def runCICIDS(pathDataset,testPath,pathtest,pathModels):
 
     acnn = load_model(pathModels + 'ACNN.h5')
     print('ACNN prediction')
+    acnn.summary()
     i = 0
     r_list = list()
     for t, Y in zip(test_X_conACNN, test_Y):
@@ -277,6 +283,7 @@ def runCICIDS(pathDataset,testPath,pathtest,pathModels):
 
     mindful = load_model(pathModels + 'MINDFUL.h5')
     print('MINDFUL prediction')
+    mindful.summary()
     i = 0
     r_list = list()
     for t, Y in zip(test_X_image, test_Y):
