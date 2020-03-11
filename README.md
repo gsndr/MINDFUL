@@ -39,7 +39,7 @@ Repository contains scripts of all experiments included in the paper:
 ## Replicate the experiments
 
 To replicate experiments reported in the work, you can use models and datasets stored in homonym folders.
-Global variable are stored in __MINDFUL.conf__  file 
+Global variables are stored in __MINDFUL.conf__  file 
 
 
 ```python
