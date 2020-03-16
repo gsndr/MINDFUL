@@ -87,6 +87,7 @@ class RunCNN1D():
         ds = Datasets(dsConf)
         ds.preprocessing1()
         train, test = ds.getTrain_Test()
+        print(test)
         prp = prep(train, test)
 
         # Preprocessing phase from original to numerical dataset
@@ -164,7 +165,7 @@ class RunCNN1D():
             print("Load autoencoder Normal from disk")
             autoencoderN = load_model(pathModels + 'autoencoderNormal.h5')
             autoencoderN.summary()
-            plot_model(autoencoderN, to_file='model.png')
+            
 
         train_RE = autoencoderN.predict(train_X)
         test_RE = autoencoderN.predict(test_X)
