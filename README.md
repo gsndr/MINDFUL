@@ -1,10 +1,10 @@
-# (MultI-chanNel Deep FeatUre Learning for intrusion detection (MINDFUL)
+# MultI-chanNel Deep FeatUre Learning for intrusion detection (MINDFUL)
 
 The repository contains code refered to the work:
 
 _Giuseppina Andresini, Annalisa Appice, Nicola Di Mauro, Corrado Loglisci, Donato Malerba_
 
-Multi-Channel Deep Feature Learning forIntrusion Detection 
+Multi-Channel Deep Feature Learning for Intrusion Detection 
 
 
 ## Code requirements
@@ -39,7 +39,7 @@ Repository contains scripts of all experiments included in the paper:
 ## Replicate the experiments
 
 To replicate experiments reported in the work, you can use models and datasets stored in homonym folders.
-Global variable are stored in __MINDFUL.conf__  file 
+Global variables are stored in __MINDFUL.conf__  file 
 
 
 ```python
