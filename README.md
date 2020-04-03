@@ -4,7 +4,7 @@ The repository contains code refered to the work:
 
 _Giuseppina Andresini, Annalisa Appice, Nicola Di Mauro, Corrado Loglisci, Donato Malerba_
 
-Multi-Channel Deep Feature Learning for Intrusion Detection 
+[Multi-Channel Deep Feature Learning for Intrusion Detection](https://ieeexplore.ieee.org/document/9036935) 
 
 
 ## Code requirements
