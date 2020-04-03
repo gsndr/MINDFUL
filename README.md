@@ -7,7 +7,8 @@ _Giuseppina Andresini, Annalisa Appice, Nicola Di Mauro, Corrado Loglisci, Donat
 [Multi-Channel Deep Feature Learning for Intrusion Detection](https://ieeexplore.ieee.org/document/9036935) 
 
 Please cite our work if you find it useful for your research and work.
-``@ARTICLE{9036935, 
+```
+  @ARTICLE{9036935, 
   author={G. {Andresini} and A. {Appice} and N. D. {Mauro} and C. {Loglisci} and D. {Malerba}}, 
   journal={IEEE Access}, 
   title={Multi-Channel Deep Feature Learning for Intrusion Detection}, 
