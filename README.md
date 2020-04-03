@@ -64,3 +64,6 @@ Global variables are stored in __MINDFUL.conf__  file
     VALIDATION_SPLIT #the percentage of validation set used to train models
 ```
 
+## Download datasets
+
+[All datasets](https://drive.google.com/drive/folders/1OIfsMv2PJljkc0aco00WB4_t8gEnXMiE?usp=sharing)
