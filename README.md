@@ -18,7 +18,7 @@ Please cite our work if you find it useful for your research and work.
   pages={53346-53359},}
 ```
 
-
+![MINDFUL](https://ieeexplore.ieee.org/mediastore_new/IEEE/content/media/6287639/8948470/9036935/andre1ab-2980937-large.gif)
 
 ## Code requirements
 
